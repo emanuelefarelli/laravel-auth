@@ -34,11 +34,20 @@
                     <p>
                         {{ $project->finished_at }}
                     </p>
-                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">
+                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning mb-2">
                         Edit
                     </a>
-                    <a href="#" class="btn btn-danger">
-                        Delete
+                    <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger mb-2">
+                            Delete
+                        </button>
+                    </form>
+
+                    <a href="{{ route('admin.projects.index') }}" class="btn btn-primary mb-2">
+                        Ritorna alla lista!
                     </a>
                 </div>
             </div>

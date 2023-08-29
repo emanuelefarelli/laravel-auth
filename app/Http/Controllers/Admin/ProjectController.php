@@ -51,6 +51,8 @@ class ProjectController extends Controller
         ]);
         $newProject = Project::create($data);
         $newProject->save();
+        return redirect()->route('admin.projects.show', $newProject->id);    
+
     }
 
     /**
