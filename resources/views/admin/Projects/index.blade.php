@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <div class="container">
     <div class="d-flex justify-content-between">
         <h1>
@@ -39,9 +42,14 @@
             <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning btn-m me-3">
                 Edit
             </a>
-            <a href="{{ url('admin/projects/show') }}" class="btn btn-danger btn-m">
-                Delete
-            </a>
+            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn btn-danger btn-m me-3">
+                    Delete
+                </button>
+            </form>
         </div>
       </td>
     </tr>
