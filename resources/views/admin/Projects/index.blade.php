@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
+    <div class="d-flex justify-content-between">
+        <h1>
+            Projects
+        </h1>
+        <a href="{{route('admin.projects.create')}}" class="btn btn-primary btn-m mb-2">
+            Create a new project
+        </a>
+    </div>
 <table class="table table-bordered table-dark">
   <thead>
     <tr>
