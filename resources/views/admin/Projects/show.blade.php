@@ -34,7 +34,7 @@
                     <p>
                         {{ $project->finished_at }}
                     </p>
-                    <a href="#" class="btn btn-warning">
+                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">
                         Edit
                     </a>
                     <a href="#" class="btn btn-danger">

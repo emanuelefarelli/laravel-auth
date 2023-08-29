@@ -31,16 +31,26 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $data = $request->all();
-        $newProject = new Project();
-        $newProject->title = $data['title'];
-        $newProject->description = $data['description'];
-        $newProject->group_name = $data['group_name'];
-        $newProject->started_at = $data['started_at'];
-        $newProject->finished_at = $data['finished_at'];
-        $newProject->final_score = $data['final_score'];
+        // $data = $request->all();
+        // $newProject = new Project();
+        // $newProject->title = $data['title'];
+        // $newProject->description = $data['description'];
+        // $newProject->group_name = $data['group_name'];
+        // $newProject->started_at = $data['started_at'];
+        // $newProject->finished_at = $data['finished_at'];
+        // $newProject->final_score = $data['final_score'];
+        // $newProject->save();
+        // return redirect()->route('admin.projects.show',$newProject->id);
+        $data = $request->validate([
+            'title' => ['required', 'min:1','max:34'],
+            'description' => ['required','min:10','max:1000'],
+            'group_name' => ['required'],
+            'started_at' => ['required'],
+            'finished_at' => ['required'],
+            'final_score' => ['required'],
+        ]);
+        $newProject = Project::create($data);
         $newProject->save();
-        return redirect()->route('admin.projects.show',$newProject->id);
     }
 
     /**
@@ -55,9 +65,10 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('admin.projects.edit',compact('project'));
     }
 
     /**
@@ -65,8 +76,20 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        // $data = $request->all();
+        // $project->update($data);
+        // return redirect()->route('admin.projects.show',$project->$id);
+        $project = Project::findOrFail($id);
+        $data = $request->validate([
+            'title' => ['required', 'min:1','max:34'],
+            'description' => ['required','min:10','max:1000'],
+            'group_name' => ['required'],
+            'started_at' => ['required'],
+            'finished_at' => ['required'],
+            'final_score' => ['required'],
+        ]);
+        $project->update($data);
+        return redirect()->route('admin.projects.show',compact('project'));    }
 
     /**
      * Remove the specified resource from storage.
