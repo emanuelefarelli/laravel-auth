@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Project;
 
 class ProjectController extends Controller
@@ -41,14 +42,21 @@ class ProjectController extends Controller
         // $newProject->final_score = $data['final_score'];
         // $newProject->save();
         // return redirect()->route('admin.projects.show',$newProject->id);
+
+        // dd($request);
+
+        $img_path = Storage::put('uploads',$request['image']); 
+
         $data = $request->validate([
             'title' => ['required', 'min:1','max:34'],
             'description' => ['required','min:10','max:1000'],
+            // 'image' => ['file'],
             'group_name' => ['required'],
             'started_at' => ['required'],
             'finished_at' => ['required'],
             'final_score' => ['required'],
         ]);
+        $data['image'] = $img_path;
         $newProject = Project::create($data);
         $newProject->save();
         return redirect()->route('admin.projects.show', $newProject->id);    

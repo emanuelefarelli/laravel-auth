@@ -8,6 +8,9 @@
                     <h1>
                         {{ $project->title }}
                     </h1>
+                    <span>
+                        {{ $project->type->name }}
+                    </span>
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">
@@ -16,6 +19,13 @@
                     <p>
                         {{ $project->description }}
                     </p>
+
+                    @if (str_starts_with( $project->image ,'http'))
+                    <img src="{{ $project->image }}" alt="{{ $project->title }}">
+                    @else
+                    <img src="{{ asset ('storage/' . $project->image) }}" alt="{{ $project->title }}">
+                    @endif
+
                     <h3>
                         Final score:
                     </h3>

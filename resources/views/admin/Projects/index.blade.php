@@ -16,6 +16,7 @@
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Title</th>
+      <th scope="col">Type</th>
       <th scope="col">Group Name</th>
       <th scope="col">Started at</th>
       <th scope="col">Finished at</th>
@@ -28,6 +29,7 @@
     <tr>
       <th scope="row"> {{ $project->id }} </th>
       <td> {{ $project->title }} </td>
+      <td> {{ $project->type->name }} </td>
       <td> {{ $project->group_name }} </td>
       <td> {{ $project->started_at }} </td>
       <td> {{ $project->finished_at }} </td>

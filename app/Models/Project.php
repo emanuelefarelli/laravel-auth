@@ -17,4 +17,8 @@ class Project extends Model
         'finished_at',
         'final_score',
     ];
+
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
 }

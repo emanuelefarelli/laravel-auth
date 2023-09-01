@@ -31,6 +31,15 @@
             <div class="form-group">
                 <label for="title">
                     <h3 class="mt-3">    
+                        Project Image:
+                    </h3>
+                </label>
+                <input type="text" class="form-control" id="description" name="description" value="{{ $project->image }}">
+            </div>
+
+            <div class="form-group">
+                <label for="title">
+                    <h3 class="mt-3">    
                         Group Name:
                     </h3>
                 </label>

@@ -6,7 +6,7 @@
         <h1 class="my-5 bg-primary p-3 text-white">
             Insert a new project!
         </h1>
-        <form action="{{route('admin.projects.store')}}" method="POST">
+        <form action="{{route('admin.projects.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -35,7 +35,16 @@
                 </label>
                 <input type="text" class="form-control" id="group_name" name="group_name" placeholder="Enter group name">
             </div>
-            
+
+            <div class="form-group">
+                <label for="title">
+                    <h3 class="mt-3">    
+                        Insert Image:
+                    </h3>
+                </label>
+                <input type="file" name="image" id="image" class="form-control" placeholder="Upload your image">
+            </div>
+
             <div class="form-group">
                 <label for="title">
                     <h3 class="mt-3">    
